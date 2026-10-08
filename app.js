@@ -108,7 +108,7 @@ renderer.domElement.onmousedown=e=>{if((locked||mobile)&&e.button===0)breakTarge
 let sx=0,sz=0,drag=false;const stick=document.getElementById("stick");stick.onpointerdown=e=>{drag=true;stick.setPointerCapture(e.pointerId)};stick.onpointermove=e=>{if(!drag)return;const r=stick.getBoundingClientRect();sx=Math.max(-1,Math.min(1,(e.clientX-r.left-r.width/2)/35));sz=Math.max(-1,Math.min(1,(e.clientY-r.top-r.height/2)/35));stick.querySelector("i").style.transform="translate("+sx*25+"px,"+sz*25+"px)"};stick.onpointerup=()=>{drag=false;sx=sz=0;stick.querySelector("i").style.transform=""};
 document.getElementById("jumpBtn").onclick=()=>{if(onGround)vy=.19};document.getElementById("breakBtn").onclick=breakTarget;document.getElementById("placeBtn").onclick=placeTarget;
 
-const cloudMat=new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.7});for(let i=0;i<mobile?5:10;i++){const c=new THREE.Mesh(new THREE.BoxGeometry(7,1,3),cloudMat);c.position.set((i*17)%70-35,13,(i*23)%70-35);scene.add(c)}
+const cloudMat=new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.7});for(let i=0;i<(mobile?5:10);i++){const c=new THREE.Mesh(new THREE.BoxGeometry(7,1,3),cloudMat);c.position.set((i*17)%70-35,13,(i*23)%70-35);scene.add(c)}
 
 let last=performance.now(),frames=0,ft=last,chunkTick=0;
 function update(dt,now){
